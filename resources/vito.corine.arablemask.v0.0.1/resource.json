@@ -1,0 +1,58 @@
+{
+  "urn" : "local:ferdinando.villa:im.openeo.sandbox:vito.corine.arablemask",
+  "version" : "0.0.1",
+  "adapterType" : "openeo",
+  "localPath" : "im.openeo.sandbox/resources/vito.corine.arablemask.v0.0.1",
+  "geometry" : "t1S2",
+  "projectName" : "im.openeo.sandbox",
+  "localName" : "vito.corine.arablemask",
+  "type" : "NUMBER",
+  "resourceTimestamp" : 1685631884255,
+  "metadata" : {
+    "dc:description" : "arable/non-arable mask based on CORINE ACC remapped with custom dictionary. Returns a single band RasterCube.",
+    "dc:comment" : "Creates a arable/non-arable mask for the CORINE Accounting Layers based on a given remapping dictionary.",
+    "dc:title" : "arable/non-arable mask based on CORINE ACC remapped with custom dictionary"
+  },
+  "parameters" : {
+    "space.shape" : "geometry",
+    "time.year" : "year",
+    "processId" : "udp_CORINE_arable_mask",
+    "serviceUrl" : "https://openeo.vito.be/openeo/1.1.0",
+    "namespace" : "https://raw.githubusercontent.com/integratedmodelling/OpenEO-UDP-UDF-catalogue/main/UDP/json/udp_corine_arable_mask.json",
+    "space.projection" : "?",
+    "nodata" : "-9999",
+    "space.resolution" : "resolution"
+  },
+  "localPaths" : [ ],
+  "history" : [ ],
+  "notifications" : [ ],
+  "attributes" : [ ],
+  "spatialExtent" : null,
+  "dependencies" : [ {
+    "name" : "remapping_dict",
+    "type" : "OBJECT",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "output_warp",
+    "type" : "BOOLEAN",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "output_epsg",
+    "type" : null,
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  } ],
+  "outputs" : null,
+  "categorizables" : [ ],
+  "codelists" : [ ],
+  "availability" : null,
+  "exportFormats" : { }
+}
