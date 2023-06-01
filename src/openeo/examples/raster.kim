@@ -1,0 +1,22 @@
+private namespace openeo.examples.raster;
+
+/*
+ * Synchronous mode is selected with the parameter. It's much faster but may incur into timeouts, and the
+ * execution time is rather unpredictable, at least from some initial tests, so that happens randomly. 
+ * Timeouts should also be configurable through parameters, but that's not a strategy.
+ * 
+ * Parameters that are not recognized directly by the adapter are passed as arguments to the UDP if they
+ * match known parameter names. 
+ * 
+ * Passing output_warp=true is needed to enable resampling in the wrapped UDP. For UDPs used with k.LAB, 
+ * warping should be enabled by default. 
+ */ 
+model 'local:ferdinando.villa:scratch:vito.fcover#synchronous=true&output_warp=true' as ecology:CanopyCover;
+
+/*
+ * Asynchronous (much slower) is the default operation mode. 
+ * Passing output_warp=true is needed for the wrapped UDP. For UDPs used with k.LAB, warping should be 
+ * enabled by default. 
+ */ 
+model "local:ferdinando.villa:scratch:vito.fcover#output_warp=true" as ecology:CanopyCover;
+
