@@ -22,7 +22,7 @@ model "local:ferdinando.villa:scratch:vito.fcover#output_warp=true" as ecology:C
 
 /**
  * The UDP contains a UDF. Currently it fails with errors. Run asynchronously to see them (if run 
- * synchronously, no link to the logs are sent in the response header).
+ * synchronously, gets a 500 no link to the logs are sent in the response header).
  */
 model 'local:ferdinando.villa:im.openeo.sandbox:vito.corine.arablemask#output_warp=true' 
 	as presence of agriculture:AgriculturalDestination earth:Region;
