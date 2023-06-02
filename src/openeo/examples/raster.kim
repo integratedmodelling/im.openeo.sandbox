@@ -20,4 +20,10 @@ model 'local:ferdinando.villa:scratch:vito.fcover#synchronous=true&output_warp=t
  */ 
 model "local:ferdinando.villa:scratch:vito.fcover#output_warp=true" as ecology:CanopyCover;
 
+/**
+ * The UDP contains a UDF. Currently it fails with errors. Run asynchronously to see them (if run 
+ * synchronously, no link to the logs are sent in the response header).
+ */
+model 'local:ferdinando.villa:im.openeo.sandbox:vito.corine.arablemask#output_warp=true' 
+	as presence of agriculture:AgriculturalDestination earth:Region;
 
