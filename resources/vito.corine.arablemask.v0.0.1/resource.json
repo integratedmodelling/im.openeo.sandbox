@@ -19,7 +19,7 @@
     "processId" : "udp_CORINE_arable_mask",
     "serviceUrl" : "https://openeo.vito.be/openeo/1.1.0",
     "namespace" : "https://raw.githubusercontent.com/integratedmodelling/OpenEO-UDP-UDF-catalogue/main/UDP/json/udp_corine_arable_mask.json",
-    "space.projection" : "?",
+    "space.projection" : "output_epsg",
     "nodata" : "-9999",
     "space.resolution" : "resolution"
   },
@@ -38,13 +38,6 @@
   }, {
     "name" : "output_warp",
     "type" : "BOOLEAN",
-    "key" : false,
-    "optional" : true,
-    "exampleValue" : null,
-    "index" : 0
-  }, {
-    "name" : "output_epsg",
-    "type" : null,
     "key" : false,
     "optional" : true,
     "exampleValue" : null,
