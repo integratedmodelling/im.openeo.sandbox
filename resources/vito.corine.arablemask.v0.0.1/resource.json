@@ -7,11 +7,19 @@
   "projectName" : "im.openeo.sandbox",
   "localName" : "vito.corine.arablemask",
   "type" : "NUMBER",
-  "resourceTimestamp" : 1685631884255,
+  "resourceTimestamp" : 1686389903274,
   "metadata" : {
     "dc:description" : "arable/non-arable mask based on CORINE ACC remapped with custom dictionary. Returns a single band RasterCube.",
+    "im:keywords" : "Arable land, landcover, CORINE",
     "dc:comment" : "Creates a arable/non-arable mask for the CORINE Accounting Layers based on a given remapping dictionary.",
-    "dc:title" : "arable/non-arable mask based on CORINE ACC remapped with custom dictionary"
+    "im:notes" : "",
+    "dc:title" : "arable/non-arable mask based on CORINE ACC remapped with custom dictionary",
+    "dc:url" : "https://raw.githubusercontent.com/integratedmodelling/OpenEO-UDP-UDF-catalogue/main/UDP/json/udp_corine_arable_mask.json",
+    "dc:creator" : "",
+    "im:thematic-area" : "Agriculture",
+    "dc:originator" : "VITO (http://vito.be)",
+    "im:geographic-area" : "Europe",
+    "dc:source" : ""
   },
   "parameters" : {
     "space.shape" : "geometry",

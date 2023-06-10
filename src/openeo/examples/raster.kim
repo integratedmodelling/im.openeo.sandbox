@@ -21,7 +21,7 @@ model 'local:ferdinando.villa:scratch:vito.fcover#synchronous=true&output_warp=t
 model "local:ferdinando.villa:scratch:vito.fcover#output_warp=true" as ecology:CanopyCover;
 
 /**
- * The UDP contains a UDF. Only works on the development server. Likely to give timeouts if run synchronously.
+ * Global UDP parameters can be set in the URN
  */
 model 'local:ferdinando.villa:im.openeo.sandbox:vito.corine.arablemask#output_warp=true' 
 	as presence of landcover:ArableLand earth:Region;
