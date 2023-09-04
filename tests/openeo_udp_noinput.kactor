@@ -1,0 +1,10 @@
+testcase openeo_udp_noinput
+	"Simple use cases that connect to remote or local UDPs and execute them on the server. Must have installed
+     terrascope credentials. Use cases run without inputs from k.LAB besides global URN parameters."
+	
+action main:
+	// TODO check credentials
+	
+@test
+action test1:
+
