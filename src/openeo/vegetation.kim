@@ -1,0 +1,8 @@
+scenario openeo.vegetation;
+
+
+model 'local:ferdinando.villa:im.openeo.sandbox:vito.ndvi#output_warp=true&synchronous=true'
+	as ecology:NormalizedDifferenceVegetationIndex;
+	
+model "local:ferdinando.villa:im.openeo.sandbox:vito.lai#output_warp=true&synchronous=true" 
+	as ecology:LeafAreaIndex;
