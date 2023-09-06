@@ -7,11 +7,19 @@
   "projectName" : "im.openeo.sandbox",
   "localName" : "vito.cfactor",
   "type" : "NUMBER",
-  "resourceTimestamp" : 1693822418646,
+  "resourceTimestamp" : 1693988060760,
   "metadata" : {
     "dc:description" : "Loads the prepared annual INCA c-factor raster for RUSLE calculation. Returns a single band RasterCube.",
+    "im:keywords" : "",
     "dc:comment" : "Loads the prepared c-factor raster dataset from the INCA tool for the soil retention claculation.",
-    "dc:title" : "Loads the prepared annual INCA c-factor raster for RUSLE calculation"
+    "im:notes" : "",
+    "dc:title" : "Loads the prepared annual INCA c-factor raster for RUSLE calculation",
+    "dc:url" : "",
+    "dc:creator" : "",
+    "im:thematic-area" : "",
+    "dc:originator" : "",
+    "im:geographic-area" : "",
+    "dc:source" : ""
   },
   "parameters" : {
     "space.shape" : "geometry",
@@ -19,7 +27,7 @@
     "processId" : "udp_Cfactor_prepared_load",
     "serviceUrl" : "https://openeo-dev.vito.be/openeo/1.1.0",
     "namespace" : "https://raw.githubusercontent.com/integratedmodelling/OpenEO-UDP-UDF-catalogue/main/UDP/json/udp_cfactor_prepared_load.json",
-    "space.projection" : "?",
+    "space.projection" : "output_epsg",
     "nodata" : "-9999",
     "space.resolution" : "resolution"
   },

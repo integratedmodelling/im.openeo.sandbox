@@ -1,0 +1,4 @@
+scenario openeo.soildata;
+
+model 'local:ferdinando.villa:im.openeo.sandbox:vito.cfactor#synchronous=true&output_warp=true'
+	as soil:CoverManagement;
