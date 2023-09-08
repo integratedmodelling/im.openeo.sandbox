@@ -6,3 +6,8 @@ model 'local:ferdinando.villa:im.openeo.sandbox:vito.ndvi#output_warp=true&synch
 	
 model "local:ferdinando.villa:im.openeo.sandbox:vito.lai#output_warp=true&synchronous=true" 
 	as ecology:LeafAreaIndex;
+	
+@intensive(time)
+model "local:ferdinando.villa:im.openeo.sandbox:vito.gdmp#output_warp=true&synchronous=true"
+	as ecology:PrimaryProduction in kg/m^2*year;
+	
