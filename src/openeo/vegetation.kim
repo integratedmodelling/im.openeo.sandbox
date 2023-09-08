@@ -1,6 +1,5 @@
 scenario openeo.vegetation;
 
-
 model 'local:ferdinando.villa:im.openeo.sandbox:vito.ndvi#output_warp=true&synchronous=true'
 	as ecology:NormalizedDifferenceVegetationIndex;
 	
@@ -9,5 +8,5 @@ model "local:ferdinando.villa:im.openeo.sandbox:vito.lai#output_warp=true&synchr
 	
 @intensive(time)
 model "local:ferdinando.villa:im.openeo.sandbox:vito.gdmp#output_warp=true&synchronous=true"
-	as ecology:PrimaryProduction in kg/m^2*year;
+	as ecology:PrimaryProductivity in kg/m^2*year;
 	
