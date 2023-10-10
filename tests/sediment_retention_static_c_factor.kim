@@ -1,0 +1,42 @@
+worldview im;
+
+@test(
+    name = "sediment_retention_static_c_factor",
+    description  = "",
+    // add to the list any concepts to be observed in the context below
+    observations = (
+    "aries.global.sediment.cover-management-resolver",
+    "aries.global.sediment.soil-retained-mass-caused-by-vegetation-resolver"
+    "im|im.openeo.sandbox/tests/sediment_retention_static_c_factor.sediment_biophysical_supply_dynamic"
+    ),
+    // add assertions to check the observations after execution
+    assertions = (),
+    // add assertions to check the observations after execution
+    assertions = ()
+)
+// change the concept to the one you want; use a URN optionally (in a separate test project including the resource)
+observe earth:Region named sediment_retention_static_cover_managment
+    over space(shape='EPSG:4326 POLYGON ((-2.209946870095756 42.95566207023822, -2.6493999950957563 42.95566207023822, -2.6493999950957563 43.11538851034811, -2.209946870095756 43.11538851034811, -2.209946870095756 42.95566207023822))',
+    		grid="100 m",
+    		projection="EPSG:3035"),
+    time(start=2010, end=2020, step=1.year);
+// add any models here
+// add any models here
+@var(timespan=(start end))
+@documented(seeaeea.erosion) 
+define table sediment_biophysical_supply_dynamic as {
+	name: "sediment_biophysical"
+	title: "Soil Erosion Control Physical Supply (tons soil retained)",
+	label: "Soil Erosion Control Service Physical Supply Change Summary",
+	target: im:Retained soil:Soil im:Mass caused by ecology:Vegetation in t/ha
+	when: end
+	observables: es.nca:EcosystemType // not part of the model, add here if only mentioned in parameters
+	use: tables.compiler.summarize(contabilize-nulls = true, 
+		rowsummary = { filter: "change" title: "Net change"}, 
+		colsummary=  { filter: "total", title: "Total" },
+		rows =       { filter: %timespan% }, 
+		columns =    { filter: es.nca:EcosystemType }, 
+		empty='', 
+		no-data = ''
+	)	
+};
