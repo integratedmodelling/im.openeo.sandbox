@@ -7,7 +7,8 @@ worldview im;
     observations = (
     "aries.global.sediment.cover-management-resolver",
     "aries.global.sediment.soil-retained-mass-caused-by-vegetation-resolver"
-    "im|im.openeo.sandbox/tests/sediment_retention_static_c_factor.sediment_biophysical_supply_dynamic"
+    "im|im.openeo.sandbox/tests/sediment_retention_static_c_factor.sediment_biophysical_supply_dynamicby_landcover_class"
+    "im|im.openeo.sandbox/tests/sediment_retention_static_c_factor.sediment_biophysical_supply_dynamic_by_ecosystem_type"
     ),
     // add assertions to check the observations after execution
     assertions = (),
@@ -21,10 +22,28 @@ observe earth:Region named sediment_retention_static_cover_managment
     		projection="EPSG:3035"),
     time(start=2010, end=2020, step=1.year);
 // add any models here
-// add any models here
+
 @var(timespan=(start end))
 @documented(seeaeea.erosion) 
-define table sediment_biophysical_supply_dynamic as {
+define table sediment_biophysical_supply_dynamic_by_landcover_class as {
+	name: "sediment_biophysical"
+	title: "Soil Erosion Control Physical Supply (tons soil retained)",
+	label: "Soil Erosion Control Service Physical Supply Change Summary",
+	target: im:Retained soil:Soil im:Mass caused by ecology:Vegetation in t/ha
+	when: end
+	observables: landcover:LandCoverType // not part of the model, add here if only mentioned in parameters
+	use: tables.compiler.summarize(contabilize-nulls = true, 
+		rowsummary = { filter: "change" title: "Net change"}, 
+		colsummary=  { filter: "total", title: "Total" },
+		rows =       { filter: %timespan% }, 
+		columns =    { filter: landcover:LandCoverType }, 
+		empty='', 
+		no-data = ''
+	)	
+};
+@var(timespan=(start end))
+@documented(seeaeea.erosion) 
+define table sediment_biophysical_supply_dynamic_by_ecosystem_type as {
 	name: "sediment_biophysical"
 	title: "Soil Erosion Control Physical Supply (tons soil retained)",
 	label: "Soil Erosion Control Service Physical Supply Change Summary",
