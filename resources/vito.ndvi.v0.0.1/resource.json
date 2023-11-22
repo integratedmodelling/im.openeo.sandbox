@@ -3,7 +3,7 @@
   "version" : "0.0.1",
   "adapterType" : "openeo",
   "localPath" : "im.openeo.sandbox/resources/vito.ndvi.v0.0.1",
-  "geometry" : "t1S2",
+  "geometry" : "t1{ttype=GRID}S2",
   "projectName" : "im.openeo.sandbox",
   "localName" : "vito.ndvi",
   "type" : "NUMBER",
