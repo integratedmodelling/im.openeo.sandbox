@@ -26,4 +26,19 @@ model "local:ferdinando.villa:scratch:vito.fcover#output_warp=true" as ecology:C
 model 'local:ferdinando.villa:im.openeo.sandbox:vito.corine.arablemask#output_warp=true' 
 	as presence of landcover:ArableLand earth:Region;
 
-	
+/*
+ * ESA forest carbon monitoring 100m
+ */	
+ //@scale()
+ @intensive(space)
+ model 'local:alessio.bulckaen:im.openeo.sandbox:vito.esa.biomass_100m'
+ 	as ecology:AboveGroundBiomass in t/ha; //TODO: change semantic for ABG
+ 
+ /*
+ * ESA forest carbon monitoring 20m
+ */	
+ //@scale()
+ @intensive(space)
+ model 'local:alessio.bulckaen:im.openeo.sandbox:vito.esa.biomass_20m'
+ 	as ecology:AboveGroundBiomass in t/ha; //TODO: change semantic for ABG
+ 	

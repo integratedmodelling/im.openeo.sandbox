@@ -1,0 +1,18 @@
+worldview im;
+
+@test(
+    name = "test_udp_biomass",
+    description  = "The test produce this error in the engine
+ 					Job j-231206b47a99450dbb4a246e7a0c065e: submission unsuccessful
+					Is it due to the additional parameter added by Marcel to serve  a multi-band raster?",
+    
+    // add to the list any concepts to be observed in the context below
+    observations = ("openeo.examples.raster.above-ground-biomass-resolver"),
+    // add assertions to check the observations after execution
+    assertions = ()
+)
+// change the concept to the one you want; use a URN optionally (in a separate test project including the resource)
+observe /* a:urn:to:use#objectid as */ earth:Region named test_udp_biomass
+    // add any space and/or time extents: for example
+    over space(shape="EPSG:4326 POLYGON ((-2.5833806814991345 43.36891615814139, -2.875300071828288 43.36891615814139, -2.875300071828288 43.4659245365759, -2.5833806814991345 43.4659245365759, -2.5833806814991345 43.36891615814139))", grid="100 m"), time(year=2020)
+;
