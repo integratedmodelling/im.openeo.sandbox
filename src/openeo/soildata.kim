@@ -2,4 +2,4 @@ scenario openeo.soildata;
 
 model 'local:ferdinando.villa:im.openeo.sandbox:vito.cfactor#synchronous=true&output_warp=true'
 	as soil:CoverManagement
-	over space(urn = 'local:srwohl:im.data.global:im-data-global-landcover_corine_extent');
+	over space(urn = 'local:srwohl:im.data.global:im-data-global-landcover_corine_extent'); 
