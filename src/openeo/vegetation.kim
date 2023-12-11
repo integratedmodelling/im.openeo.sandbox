@@ -11,5 +11,9 @@ model "local:ferdinando.villa:im.openeo.sandbox:vito.gdmp#output_warp=true&synch
 	as ecology:PrimaryProductivity in kg/ha*year;
 
 	
-model local:stefano.balbi:im.openeo.sandbox:vito.ndwi.landsat
+model 'local:stefano.balbi:im.openeo.sandbox:vito.ndwi.landsat#output_warp=true&synchronous=true'
 	 as ecology:NormalizedDifferenceWaterIndex; 
+	 
+@intesnive(space) 
+model 'local:stefano.balbi:im.openeo.sandbox:vito.biomas.cci#output_warp=true&synchronous=true'
+  as ecology:Vegetation ecology:Biomass in t/ha;         
