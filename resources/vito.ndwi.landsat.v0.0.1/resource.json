@@ -16,7 +16,7 @@
   "parameters" : {
     "space.shape" : "geometry",
     "time.year" : "year",
-    "processId" : "udp_three_annual_average_NDWI",
+    "processId" : "udp_three_annual_average_ndwi",
     "serviceUrl" : "https://openeo.vito.be/openeo/1.1.0",
     "namespace" : "https://raw.githubusercontent.com/integratedmodelling/OpenEO-UDP-UDF-catalogue/main/UDP/json/udp_three_annual_average_NDWI.json",
     "space.projection" : "?",
