@@ -9,4 +9,7 @@ model "local:ferdinando.villa:im.openeo.sandbox:vito.lai#output_warp=true&synchr
 @intensive(time)
 model "local:ferdinando.villa:im.openeo.sandbox:vito.gdmp#output_warp=true&synchronous=true"
 	as ecology:PrimaryProductivity in kg/ha*year;
+
 	
+model local:stefano.balbi:im.openeo.sandbox:vito.ndwi.landsat
+	 as ecology:NormalizedDifferenceWaterIndex; 
