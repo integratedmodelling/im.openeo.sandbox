@@ -16,4 +16,6 @@ model 'local:stefano.balbi:im.openeo.sandbox:vito.ndwi.landsat#output_warp=true&
 	 
 @intensive(space)   
 model 'local:stefano.balbi:im.openeo.sandbox:vito.biomas.cci#output_warp=true&synchronous=true'
-  as ecology:Vegetation ecology:Biomass in t/ha;         
+  as ecology:Vegetation ecology:Biomass in t/ha;   
+  
+  number 'local:ferdinando.villa:scratch:vito.fcover#output_warp=true&synchronous=true' as fcover;      
