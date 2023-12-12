@@ -1,0 +1,20 @@
+worldview im;
+
+@test(
+    name = "reference_layers_for_udps",
+    description  = "",
+    // add to the list any concepts to be observed in the context below
+    observations = (""),
+    // add assertions to check the observations after execution
+    assertions = ()
+)
+// change the concept to the one you want; use a URN optionally (in a separate test project including the resource)
+observe /* a:urn:to:use#objectid as */ earth:Region named reference_layers_for_udps
+	over space(urn ='local:srwohl:im.data.global:im-data-global-landcover_corine_extent',
+			   grid='300 m'),
+         time(year=2000);
+    // add any space and/or time extents: for example
+    // over space(shape="EPSG:4326 POLYGON((33.796 -7.086, 35.946 -7.086, 35.946 -9.41, 33.796 -9.41, 33.796 -7.086))", grid="1 km")
+
+
+// add any models here
