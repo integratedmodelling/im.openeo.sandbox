@@ -14,5 +14,5 @@ worldview im;
 // change the concept to the one you want; use a URN optionally (in a separate test project including the resource)
 observe /* a:urn:to:use#objectid as */ earth:Region named test_udp_biomass
     // add any space and/or time extents: for example
-    over space(shape="EPSG:4326 POLYGON ((-2.5833806814991345 43.36891615814139, -2.875300071828288 43.36891615814139, -2.875300071828288 43.4659245365759, -2.5833806814991345 43.4659245365759, -2.5833806814991345 43.36891615814139))", grid="100 m"), time(year=2020)
+    over space(shape="EPSG:4326 POLYGON ((-2.5833806814991345 43.36891615814139, -2.875300071828288 43.36891615814139, -2.875300071828288 43.4659245365759, -2.5833806814991345 43.4659245365759, -2.5833806814991345 43.36891615814139))", grid="100 m"), time(year=2000)
 ;

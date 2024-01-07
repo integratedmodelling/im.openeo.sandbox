@@ -1,0 +1,24 @@
+worldview im;
+
+@test(
+    name = "sediment.c_factor_unvegetated_adjusted",
+    description  = "",
+    // add to the list any concepts to be observed in the context below
+    observations = (""
+    	    		"openeo.soildata.cover-management-resolver",
+//    				"soil:CoverManagement caused by ecology:Vegetation"
+    				"peopleea.soil.retention.cover-management-caused-by-vegetation-resolver"
+//    				"aries.global.sediment.soil-retained-mass-caused-by-vegetation-resolver"
+    ),
+    // add assertions to check the observations after execution
+    assertions = ()
+)
+// change the concept to the one you want; use a URN optionally (in a separate test project including the resource)
+observe /* a:urn:to:use#objectid as */ earth:Region named sediment_c_factor_unvegetated_adjusted
+    over space(shape='EPSG:4326 POLYGON ((-2.209946870095756 42.95566207023822, -2.6493999950957563 42.95566207023822, -2.6493999950957563 43.11538851034811, -2.209946870095756 43.11538851034811, -2.209946870095756 42.95566207023822))',
+    		grid="500 m",
+    		projection="EPSG:3035"),
+    time(start=2018, end=2020, step=1.year);
+
+
+// add any models here
