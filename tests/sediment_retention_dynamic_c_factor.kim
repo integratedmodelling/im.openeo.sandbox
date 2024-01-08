@@ -5,6 +5,7 @@ worldview im;
     description  = "",
     // add to the list any concepts to be observed in the context below
     observations = (
+    	"peopleea.soil.retention.cover-management-caused-by-vegetation-resolver-1"
     "openeo.soildata.cover-management-resolver",
     "aries.global.sediment.soil-retained-mass-caused-by-vegetation-resolver"
     "im|im.openeo.sandbox/tests/sediment_retention_dynamic_c_factor.sediment_biophysical_supply_dynamic_by_landcover_class"

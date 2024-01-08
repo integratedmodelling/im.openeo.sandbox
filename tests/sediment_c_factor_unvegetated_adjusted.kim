@@ -4,10 +4,14 @@ worldview im;
     name = "sediment.c_factor_unvegetated_adjusted",
     description  = "",
     // add to the list any concepts to be observed in the context below
-    observations = (""
-    	    		"openeo.soildata.cover-management-resolver",
+    observations = (
+       	    		"im|im.openeo.sandbox/tests/sediment_c_factor_unvegetated_adjusted.cover-management-resolver"
+					"im|im.openeo.sandbox/tests/sediment_c_factor_unvegetated_adjusted.soil-retained-mass-caused-by-vegetation-resolver"
+//     	    		"peopleea.soil.retention.cover-management-resolver",
 //    				"soil:CoverManagement caused by ecology:Vegetation"
-    				"peopleea.soil.retention.cover-management-caused-by-vegetation-resolver"
+//    				"peopleea.soil.retention.cover-management-caused-by-vegetation-resolver-1"
+//    				"peopleea.soil.retention.cover-management-caused-by-vegetation-resolver"
+//"im|im.openeo.sandbox/tests/sediment_c_factor_unvegetated_adjusted.cover-management-caused-by-vegetation-resolver"
 //    				"aries.global.sediment.soil-retained-mass-caused-by-vegetation-resolver"
     ),
     // add assertions to check the observations after execution
@@ -15,10 +19,33 @@ worldview im;
 )
 // change the concept to the one you want; use a URN optionally (in a separate test project including the resource)
 observe /* a:urn:to:use#objectid as */ earth:Region named sediment_c_factor_unvegetated_adjusted
-    over space(shape='EPSG:4326 POLYGON ((-2.209946870095756 42.95566207023822, -2.6493999950957563 42.95566207023822, -2.6493999950957563 43.11538851034811, -2.209946870095756 43.11538851034811, -2.209946870095756 42.95566207023822))',
-    		grid="500 m",
-    		projection="EPSG:3035"),
-    time(start=2018, end=2020, step=1.year);
+    over space(shape='EPSG:4326 POLYGON ((-2.406221688847746 43.01810182350334, -2.5527346740772385 43.01810182350334, -2.5527346740772385 43.06703050694972, -2.406221688847746 43.06703050694972, -2.406221688847746 43.01810182350334))',
+    		grid="500 m"),
+ //   		projection="EPSG:3035"),
+    time(start=2018, end=2019, step=1.year);
+//    time(year=2018);
 
 
-// add any models here
+//model soil:CoverManagement caused by ecology:Vegetation
+//    observing 
+//    soil:CoverManagement named c_factor
+////    set to [(nodata(c_factor) ? 0 : c_factor];
+//	set to [(nodata(c_factor) ? c_factor : c_factor_unvegetated]; 
+ 
+ model 'local:ferdinando.villa:im.openeo.sandbox:vito.cfactor#output_warp=true&synchronous=true' 
+ 	as soil:CoverManagement;
+    
+@intensive(space)
+model im:Retained soil:Soil im:Mass caused by ecology:Vegetation in t/ha
+	observing
+		soil:RainfallRunoffErosivity in (MJ*mm)/(ha*h)    named r_factor,
+		soil:SoilErodibility 						      named k_factor, 
+		soil:SlopeSteepnessAndLength 				      named ls_factor,
+		soil:CoverManagement 						      named c_factor,
+		soil:CoverManagement caused by ecology:Vegetation named c_factor_unvegetated,
+		soil:SupportPractice 						      named p_factor
+	set to [ 
+		def c_factor_unvegetated_adjusted = (nodata(c_factor) ? 0 : c_factor_unvegetated)
+        def rusle = (r_factor * k_factor * ls_factor * c_factor * p_factor)
+        def ruslv = (r_factor * k_factor * ls_factor * c_factor_unvegetated_adjusted)
+        return (ruslv - rusle)]; 
