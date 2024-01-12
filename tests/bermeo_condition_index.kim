@@ -1,0 +1,39 @@
+worldview im;
+
+@test(
+    name = "bermeo.condition.index",
+    description  = "",
+    // add to the list any concepts to be observed in the context below
+    observations = (
+	  "peopleea.forest.birds.indicator-value-of-threatened-bird-species-richness-resolver"
+      "peopleea.soil.carbon.indicator-value-of-top-soil-organic-carbon-mass-resolver"
+
+      "im|im.openeo.sandbox/tests/bermeo_condition_index.indicator-forest-condition-resolver"
+					),
+    // add assertions to check the observations after execution
+    assertions = ()
+)
+// change the concept to the one you want; use a URN optionally (in a separate test project including the resource)
+observe /* a:urn:to:use#objectid as */ earth:Region named bermeo_condition_index
+    over space(shape="EPSG:4326 POLYGON ((-2.738103598164683 43.41970540114042, -2.776938194065562 43.41970540114042, -2.776938194065562 43.43259301757641, -2.738103598164683 43.43259301757641, -2.738103598164683 43.41970540114042))",
+    		   grid="150 m"),
+    	time(start=2015, end=2016, step=1.year);
+
+@documented(peopleea.forest_condition_accounts.index)
+model  im:Indicator ecology:Forest es.nca:Condition
+	observing 
+//		im:Indicator value of ecology:NormalizedDifferenceWaterIndex named indicator_normalized_difference_water_index,
+		im:Indicator value of soil:TopSoil chemistry:Organic chemistry:Carbon im:Mass named indicator_soil_organic_carbon,
+		im:Indicator value of conservation:Threatened biology:Bird ecology:SpeciesRichness named indicator_threathened_bird_species
+//		im:Indicator value of ecology:AboveGroundBiomass named indicator_above_ground_biomass,
+//		im:Indicator value of ecology:PrimaryProductivity named indicator_net_primary_production, 
+//	    im:Indicator value of ecology:ForestConnectivity named indicator_forest_connectivity
+	set to [
+		def w_soc =(nodata(indicator_soil_organic_carbon) ? 0    : 0.07)
+		def w_tbs =(nodata(indicator_soil_organic_carbon) ? 0.1  : 0.11)
+		return ((w_soc * indicator_soil_organic_carbon) + (w_tbs * indicator_threathened_bird_species))];
+
+//This works only observing indicator_soil_organic_carbon and indicator_threathened_bird_species	
+//		def w_soc =(nodata(indicator_soil_organic_carbon) ? 0  : 0.07)
+//		def w_tbs =(nodata(indicator_soil_organic_carbon) ? 1  : 1)
+//		return ((w_soc * indicator_soil_organic_carbon) + (w_tbs * indicator_threathened_bird_species))];

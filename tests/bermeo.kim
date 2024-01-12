@@ -5,15 +5,17 @@ worldview im;
     description  = "",
     // add to the list any concepts to be observed in the context below
     observations = (
+
       "peopleea.forest.birds.indicator-value-of-threatened-bird-species-richness-resolver"
       "peopleea.forest.biomass.indicator-value-of-above-ground-biomass-resolver"
       "peopleea.forest.ndvi.indicator-value-of-normalized-difference-vegetation-index-resolver"
       "peopleea.forest.productivity.indicator-value-of-primary-productivity-resolver"
       "peopleea.soil.carbon.indicator-value-of-top-soil-organic-carbon-mass-resolver"
       "peopleea.forest.connectivity.indicator-value-of-forest-connectivity-resolver"
-//    "openeo.vegetation.leaf-area-index-resolver"
-//    "im|im.openeo.sandbox/tests/bermeo.forest_lai"
-      "peopleea.condition.forest.indicator-forest-condition-resolver"
+      "im|im.openeo.sandbox/tests/bermeo.indicator-forest-condition-resolver"
+//      "openeo.vegetation.leaf-area-index-resolver"
+//      "im|im.openeo.sandbox/tests/bermeo.forest_lai"
+
     ),
     // add assertions to check the observations after execution
     assertions = ()
@@ -42,21 +44,27 @@ model  im:Indicator ecology:Forest es.nca:Condition
 		im:Indicator value of ecology:PrimaryProductivity named indicator_net_primary_production, 
 	    im:Indicator value of ecology:ForestConnectivity named indicator_forest_connectivity
 	set to [
+		def w_ndvi=(nodata(indicator_soil_organic_carbon) ? 0.28 : 0.27)
 		def w_soc =(nodata(indicator_soil_organic_carbon) ? 0    : 0.07)
-		return ((0.27 * indicator_normalized_difference_water_index) + (w_soc * indicator_soil_organic_carbon) 
-		     + (0.10 * indicator_threathened_bird_species) +  (0.18 * indicator_above_ground_biomass)
-		      (0.22 * indicator_net_primary_production) + (0.16 * indicator_forest_connectivity))];
+		def w_tbs =(nodata(indicator_soil_organic_carbon) ? 0.1  : 0.11)
+		def w_agb =(nodata(indicator_soil_organic_carbon) ? 0.18 : 0.20)
+		def w_npp =(nodata(indicator_soil_organic_carbon) ? 0.23 : 0.22)
+		def w_fc  =(nodata(indicator_soil_organic_carbon) ? 0.16 : 0.18)
+		return ((w_ndvi * indicator_normalized_difference_water_index) + (w_soc * indicator_soil_organic_carbon) 
+		     + (w_tbs * indicator_threathened_bird_species) +  (w_agb * indicator_above_ground_biomass)
+		      (w_npp * indicator_net_primary_production) + (w_fc * indicator_forest_connectivity))];
 
-//		def w_ndvi=(nodata(indicator_soil_organic_carbon) ? 0.28 : 0.27)
-//		def w_soc =(nodata(indicator_soil_organic_carbon) ? 0    : 0.07)
-//		def w_tbs =(nodata(indicator_soil_organic_carbon) ? 0.1  : 0.11)
-//		def w_agb =(nodata(indicator_soil_organic_carbon) ? 0.18 : 0.20)
-//		def w_npp =(nodata(indicator_soil_organic_carbon) ? 0.23 : 0.22)
-//		def w_fc  =(nodata(indicator_soil_organic_carbon) ? 0.16 : 0.18)
-//		return ((w_ndvi * indicator_normalized_difference_water_index) + (w_soc * indicator_soil_organic_carbon) 
-//		     + (w_tbs * indicator_threathened_bird_species) +  (w_agb * indicator_above_ground_biomass)
-//		      (w_npp * indicator_net_primary_production) + (w_fc * indicator_forest_connectivity))];
-	
+//This works only observing indicator_soil_organic_carbon and indicator_threathened_bird_species	
+//		def w_soc =(nodata(indicator_soil_organic_carbon) ? 0  : 0.07)
+//		def w_tbs =(nodata(indicator_soil_organic_carbon) ? 1  : 1)
+//		return ((w_soc * indicator_soil_organic_carbon) + (w_tbs * indicator_threathened_bird_species))];
+
+		
+//		return ((0.27 * indicator_normalized_difference_water_index) + (w_soc * indicator_soil_organic_carbon) 
+//		     + (0.10 * indicator_threathened_bird_species) +  (0.18 * indicator_above_ground_biomass)
+//		      (0.22 * indicator_net_primary_production) + (0.16 * indicator_forest_connectivity))];
+
+
 		
 //		def index= ((0.27 * indicator_normalized_difference_water_index) + (0.07 * indicator_soil_organic_carbon) 
 //		     + (0.10 * indicator_threathened_bird_species) +  (0.18 * indicator_above_ground_biomass)
