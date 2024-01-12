@@ -50,9 +50,9 @@ model  im:Indicator ecology:Forest es.nca:Condition
 		def w_agb =(nodata(indicator_soil_organic_carbon) ? 0.18 : 0.20)
 		def w_npp =(nodata(indicator_soil_organic_carbon) ? 0.23 : 0.22)
 		def w_fc  =(nodata(indicator_soil_organic_carbon) ? 0.16 : 0.18)
-		return ((w_ndvi * indicator_normalized_difference_water_index) + (w_soc * indicator_soil_organic_carbon) 
-		     + (w_tbs * indicator_threathened_bird_species) +  (w_agb * indicator_above_ground_biomass)
-		      (w_npp * indicator_net_primary_production) + (w_fc * indicator_forest_connectivity))];
+        return((w_ndvi * indicator_normalized_difference_water_index) + (w_soc * indicator_soil_organic_carbon) 
+			+ (w_tbs * indicator_threathened_bird_species) + (w_agb * indicator_above_ground_biomass)
+			+ (w_npp * indicator_net_primary_production) + (w_fc * indicator_forest_connectivity))];
 
 //This works only observing indicator_soil_organic_carbon and indicator_threathened_bird_species	
 //		def w_soc =(nodata(indicator_soil_organic_carbon) ? 0  : 0.07)
