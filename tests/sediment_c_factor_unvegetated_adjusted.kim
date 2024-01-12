@@ -7,6 +7,7 @@ worldview im;
     observations = (
        	    		"im|im.openeo.sandbox/tests/sediment_c_factor_unvegetated_adjusted.cover-management-resolver"
 					"im|im.openeo.sandbox/tests/sediment_c_factor_unvegetated_adjusted.soil-retained-mass-caused-by-vegetation-resolver"
+					"im|im.openeo.sandbox/tests/sediment_c_factor_unvegetated_adjusted.sediment_biophysical_supply_dynamic_by_landcover_class"
 //     	    		"peopleea.soil.retention.cover-management-resolver",
 //    				"soil:CoverManagement caused by ecology:Vegetation"
 //    				"peopleea.soil.retention.cover-management-caused-by-vegetation-resolver-1"
@@ -25,13 +26,6 @@ observe /* a:urn:to:use#objectid as */ earth:Region named sediment_c_factor_unve
     time(start=2018, end=2019, step=1.year);
 //    time(year=2018);
 
-
-//model soil:CoverManagement caused by ecology:Vegetation
-//    observing 
-//    soil:CoverManagement named c_factor
-////    set to [(nodata(c_factor) ? 0 : c_factor];
-//	set to [(nodata(c_factor) ? c_factor : c_factor_unvegetated]; 
- 
  model 'local:ferdinando.villa:im.openeo.sandbox:vito.cfactor#output_warp=true&synchronous=true' 
  	as soil:CoverManagement;
     
@@ -45,7 +39,27 @@ model im:Retained soil:Soil im:Mass caused by ecology:Vegetation in t/ha
 		soil:CoverManagement caused by ecology:Vegetation named c_factor_unvegetated,
 		soil:SupportPractice 						      named p_factor
 	set to [ 
-		def c_factor_unvegetated_adjusted = (nodata(c_factor) ? 0 : c_factor_unvegetated)
-        def rusle = (r_factor * k_factor * ls_factor * c_factor * p_factor)
-        def ruslv = (r_factor * k_factor * ls_factor * c_factor_unvegetated_adjusted)
-        return (ruslv - rusle)]; 
+		def rusle = (r_factor * k_factor * ls_factor * c_factor * p_factor)
+        def ruslv = (r_factor * k_factor * ls_factor * c_factor_unvegetated)
+        return ((c_factor > c_factor_unvegetated) ? (ruslv - rusle) : 0)];
+//        return ((c_factor > c_factor_unvegetated) ? (ruslv - rusle) : 0)];        
+//        return (nodata(c_factor) ? 0 : (ruslv - rusle))]; 
+
+@var(timespan=(start end))
+@documented(seeaeea.erosion) 
+define table sediment_biophysical_supply_dynamic_by_landcover_class as {
+	name: "sediment_biophysical"
+	title: "Soil Erosion Control Physical Supply (tons soil retained)",
+	label: "Soil Erosion Control Service Physical Supply Change Summary",
+	target: im:Retained soil:Soil im:Mass caused by ecology:Vegetation in t/ha
+	when: end
+	observables: landcover:LandCoverType // not part of the model, add here if only mentioned in parameters
+	use: tables.compiler.summarize(contabilize-nulls = true, 
+		rowsummary = { filter: "change" title: "Net change"}, 
+		colsummary=  { filter: "total", title: "Total" },
+		rows =       { filter: %timespan% }, 
+		columns =    { filter: landcover:LandCoverType }, 
+		empty='', 
+		no-data = ''
+	)	
+};                 	
