@@ -1,0 +1,33 @@
+worldview im;
+
+@test(
+    name = "test.high_resolution_data",
+    description  = "",
+    // add to the list any concepts to be observed in the context below
+    observations = (
+    "peopleea.highresolution.fapar_10m"//fpar_10m
+    "peopleea.highresolution.ppi_10m"//ppi_10m
+    "peopleea.highresolution.fcover_10m"//f_cover_10m
+    "peopleea.highresolution.lai_10m"//lai_10m
+    "peopleea.highresolution.ndvi_10m"//ndvi_10m
+    "peopleea.highresolution.esa_biomass_20m"//biomass_20m
+    ),
+    // add assertions to check the observations after execution
+    assertions = ()
+)
+// change the concept to the one you want; use a URN optionally (in a separate test project including the resource)
+observe /* a:urn:to:use#objectid as */ earth:Region named test_high_resolution_data
+    // add any space and/or time extents: for example
+    over space(shape="EPSG:4326 POLYGON ((-2.7614544825318386 43.41942131120288, -2.7608791074506165 43.419428790728574, -2.760872671464346 43.419131011129735, -2.761473146788319 43.41913428344685, -2.7614544825318386 43.41942131120288))", grid="10 m"),
+		 time(year=2017);
+
+// add any models here
+/*
+PPI 	from 2017 onwards
+Fapar 	from 2015 onwards
+Fcover 	from 2016 onwards
+Lai 	from 2016 onwards
+Ndvi 	from 2016 onwards
+Biomass fcm 20m from 2000 onwards
+(2020 & 2021) but this will always deliver the most recent dataset starting with requests from 2000 onwards
+ */
